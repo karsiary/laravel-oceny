@@ -118,12 +118,3 @@ Administrator systemu:
 Email: admin@example.com
 Hasło: password
 ```
-
-
-```
-
-2. W przypadku problemów z bazą danych:
-```bash
-php artisan migrate:fresh --seed
-```
-
