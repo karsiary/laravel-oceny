@@ -17,12 +17,12 @@ cd [nazwa-katalogu]
 
 ### 1.1 Pobieramy wersje PHP:
 -8.1.31
-
+[PHP](https://windows.php.net/downloads/releases/php-8.1.31-nts-Win32-vs16-x64.zip)
 
 ### 1.2 Podnieniamy plik php.ini:
 Podmieniamy plik php.ini na plik z repozytorium.
 /resources/php.ini
-[PHP](https://windows.php.net/downloads/releases/php-8.1.31-nts-Win32-vs16-x64.zip)
+
 
 
 ### 1.3 Problemy z zapisem php.ini:
