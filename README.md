@@ -83,6 +83,13 @@ Aplikacja będzie dostępna pod adresem: http://localhost:8000
 - Panel nauczyciela: http://localhost:8000/teacher
 - Panel ucznia: http://localhost:8000/student
 
+### Domyślne dane logowania
+Administrator systemu:
+```
+Email: admin@example.com
+Hasło: password
+```
+
 ## Rozwiązywanie problemów
 1. Jeśli występują problemy z uprawnieniami do katalogów storage i cache:
 ```bash
