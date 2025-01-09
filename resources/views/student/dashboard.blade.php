@@ -44,10 +44,10 @@
                                     </span>
                                 </a>
                                 @if($grade->comment)
-                                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block w-48 z-10">
-                                        <div class="bg-gray-900 text-white text-sm rounded-lg p-2 shadow-lg">
+                                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block w-48 z-50">
+                                        <div class="bg-slate-800 text-white text-sm rounded-lg p-3 shadow-xl relative border border-slate-600/50 backdrop-blur-sm">
                                             {{ $grade->comment }}
-                                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-900"></div>
+                                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2.5 h-2.5 bg-slate-800 border-r border-b border-slate-600/50"></div>
                                         </div>
                                     </div>
                                 @endif
