@@ -35,8 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:teacher'])->group(function () {
         Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.dashboard');
         Route::post('/teacher/grades', [TeacherController::class, 'addGrade'])->name('teacher.grades.store');
-        Route::get('/teacher/grades/{grade}/edit', [TeacherController::class, 'edit'])->name('teacher.grades.edit');
-        Route::put('/teacher/grades/{grade}', [TeacherController::class, 'update'])->name('teacher.grades.update');
+        Route::get('/teacher/grades/{grade}/edit', [TeacherController::class, 'editGrade'])->name('teacher.grades.edit');
+        Route::put('/teacher/grades/{grade}', [TeacherController::class, 'updateGrade'])->name('teacher.grades.update');
     });
 
     // Student routes

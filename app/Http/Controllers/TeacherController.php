@@ -17,7 +17,7 @@ class TeacherController extends Controller
             $query->where('slug', 'student');
         })->get();
         
-        $subjects = Subject::all();
+        $subjects = auth()->user()->subjects;
         
         return view('teacher.dashboard', compact('students', 'subjects'));
     }
@@ -26,7 +26,15 @@ class TeacherController extends Controller
     {
         $validated = $request->validate([
             'student_id' => ['required', 'exists:users,id'],
-            'subject_id' => ['required', 'exists:subjects,id'],
+            'subject_id' => [
+                'required',
+                'exists:subjects,id',
+                function ($attribute, $value, $fail) {
+                    if (!auth()->user()->subjects->contains($value)) {
+                        $fail('Nie masz uprawnień do wystawiania ocen z tego przedmiotu.');
+                    }
+                },
+            ],
             'grade' => ['required', 'integer', 'between:1,6'],
             'comment' => ['nullable', 'string', 'max:255'],
         ]);
@@ -49,11 +57,19 @@ class TeacherController extends Controller
 
     public function editGrade(Grade $grade)
     {
+        if (!auth()->user()->subjects->contains($grade->subject_id)) {
+            abort(403, 'Nie masz uprawnień do edycji ocen z tego przedmiotu.');
+        }
+
         return view('teacher.grades.edit', compact('grade'));
     }
 
     public function updateGrade(Request $request, Grade $grade)
     {
+        if (!auth()->user()->subjects->contains($grade->subject_id)) {
+            abort(403, 'Nie masz uprawnień do edycji ocen z tego przedmiotu.');
+        }
+
         $validated = $request->validate([
             'grade' => ['required', 'integer', 'between:1,6'],
             'comment' => ['nullable', 'string', 'max:255'],

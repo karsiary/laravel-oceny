@@ -34,8 +34,7 @@
                                 <th class="px-4 py-3 text-left text-sm font-medium text-white">Edytujący</th>
                                 <th class="px-4 py-3 text-left text-sm font-medium text-white">Stara ocena</th>
                                 <th class="px-4 py-3 text-left text-sm font-medium text-white">Nowa ocena</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-white">Stary komentarz</th>
-                                <th class="px-4 py-3 text-left text-sm font-medium text-white">Nowy komentarz</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-white">Komentarz</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-700">
@@ -50,7 +49,6 @@
                                 <td class="px-4 py-3 text-sm text-gray-300">{{ $grade->teacher->name }} {{ $grade->teacher->surname }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-300">-</td>
                                 <td class="px-4 py-3 text-sm text-gray-300">{{ $firstHistory->new_grade }}</td>
-                                <td class="px-4 py-3 text-sm text-gray-300">-</td>
                                 <td class="px-4 py-3 text-sm text-gray-300">{{ $firstHistory->new_comment ?? '-' }}</td>
                             </tr>
                             <!-- Kolejne zmiany -->
@@ -60,7 +58,6 @@
                                     <td class="px-4 py-3 text-sm text-gray-300">{{ $history->editor->name }} {{ $history->editor->surname }}</td>
                                     <td class="px-4 py-3 text-sm text-gray-300">{{ $history->old_grade ?? '-' }}</td>
                                     <td class="px-4 py-3 text-sm text-gray-300">{{ $history->new_grade }}</td>
-                                    <td class="px-4 py-3 text-sm text-gray-300">{{ $history->old_comment ?? '-' }}</td>
                                     <td class="px-4 py-3 text-sm text-gray-300">{{ $history->new_comment ?? '-' }}</td>
                                 </tr>
                             @endforeach
