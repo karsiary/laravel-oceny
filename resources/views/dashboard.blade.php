@@ -8,7 +8,7 @@
         <!-- Powitanie -->
         <div class="card">
             <h2 class="text-2xl font-semibold text-white">Witaj, {{ auth()->user()->name }} {{ auth()->user()->surname }}!</h2>
-            <p class="mt-2 text-gray-300">Zarządzaj systemem i śledź postępy z jednego miejsca.</p>
+            <p class="mt-2 text-gray-300">To jest panel główny</p>
         </div>
         
         <!-- Główne akcje -->

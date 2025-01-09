@@ -21,7 +21,7 @@ class ProfileController extends Controller
         
         $user->update($request->validated());
 
-        return back()->with('status', 'Profil został zaktualizowany.');
+        return back()->with('success', 'Profil został zaktualizowany.');
     }
 
     public function updatePassword(Request $request)
@@ -35,7 +35,7 @@ class ProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('status', 'Hasło zostało zmienione.');
+        return back()->with('success', 'Hasło zostało zmienione.');
     }
 
     public function destroy(Request $request)
@@ -49,6 +49,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('status', 'Konto zostało usunięte.');
+        return redirect('/')->with('success', 'Konto zostało usunięte.');
     }
 } 

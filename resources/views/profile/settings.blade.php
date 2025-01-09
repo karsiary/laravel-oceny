@@ -133,12 +133,6 @@
                     </ul>
                 </div>
             @endif
-
-            @if (session('status'))
-                <div class="bg-green-500/10 border border-green-500/50 rounded-lg p-4">
-                    <p class="text-sm text-green-400">{{ session('status') }}</p>
-                </div>
-            @endif
         </div>
     </div>
 </div>
