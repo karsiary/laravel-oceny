@@ -11,7 +11,7 @@
             </a>
         </div>
 
-        <div class="bg-[rgb(30,41,59,0.5)] rounded-lg p-6">
+        <div class="container-gray rounded-lg p-6">
             <!-- Informacje o ocenie -->
             <div class="mb-6 text-gray-300 space-y-1">
                 <p>Ocena wystawiona przez: <span class="text-white font-medium">{{ $grade->teacher->name }} {{ $grade->teacher->surname }}</span></p>
