@@ -65,7 +65,9 @@
                         </div>
                     </div>
                 </div>
+            @endif
 
+            @if(auth()->user()->hasRole('teacher'))
                 <!-- Twoje Przedmioty -->
                 <div class="container-gray h-full">
                     <div class="flex flex-col h-full">
