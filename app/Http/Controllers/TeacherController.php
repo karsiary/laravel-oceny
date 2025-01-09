@@ -56,7 +56,8 @@ class TeacherController extends Controller
             ]);
         });
 
-        return redirect()->route('teacher.dashboard')->with('success', 'Ocena została dodana.');
+        return redirect()->route('teacher.dashboard', ['student_id' => $validated['student_id']])
+            ->with('success', 'Ocena została dodana.');
     }
 
     public function editGrade(Grade $grade)

@@ -15,7 +15,9 @@
                             <label for="student_id" class="block text-sm font-medium text-gray-200 mb-1">Uczeń</label>
                             <select name="student_id" id="student_id" class="w-full bg-gray-700 border-gray-600 rounded-lg text-white">
                                 @foreach($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->name }} {{ $student->surname }}</option>
+                                    <option value="{{ $student->id }}" {{ request('student_id') == $student->id ? 'selected' : '' }}>
+                                        {{ $student->name }} {{ $student->surname }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -118,5 +120,19 @@
                 arrow.classList.add('rotate-180');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedStudentId = '{{ request('student_id') }}';
+            if (selectedStudentId) {
+                const studentElement = document.getElementById('student-' + selectedStudentId);
+                if (studentElement) {
+                    studentElement.classList.remove('hidden');
+                    const arrow = document.getElementById('arrow-' + selectedStudentId);
+                    if (arrow) {
+                        arrow.classList.add('rotate-180');
+                    }
+                }
+            }
+        });
     </script>
 @endsection 
