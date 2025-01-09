@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Admin\TeacherSubjectController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -44,6 +45,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
         Route::get('/student/grades/{grade}/history', [StudentController::class, 'showGradeHistory'])->name('student.grades.history');
     });
+
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

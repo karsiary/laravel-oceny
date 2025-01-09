@@ -26,23 +26,44 @@
                     </a>
                     @auth
                         <div class="flex items-center space-x-4">
-                            <div class="flex items-center space-x-3 pt-1">
-                                <div class="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                    <span class="text-indigo-300 text-xs font-medium">
-                                        {{ substr(auth()->user()->name, 0, 1) }}{{ substr(auth()->user()->surname, 0, 1) }}
-                                    </span>
-                                </div>
-                                <div class="flex flex-col justify-center h-7">
-                                    <span class="text-white text-xs font-medium leading-4">{{ auth()->user()->name }} {{ auth()->user()->surname }}</span>
-                                    <span class="text-gray-400 text-[11px] leading-3">{{ auth()->user()->role->name }}</span>
+                            <!-- Menu użytkownika -->
+                            <div class="relative" x-data="{ open: false }">
+                                <!-- Przycisk profilu -->
+                                <button @click="open = !open" class="flex items-center space-x-3 pt-1 hover:opacity-80 transition-opacity">
+                                    <div class="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                                        <span class="text-indigo-300 text-xs font-medium">
+                                            {{ substr(auth()->user()->name, 0, 1) }}{{ substr(auth()->user()->surname, 0, 1) }}
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col justify-center h-7">
+                                        <span class="text-white text-xs font-medium leading-4">{{ auth()->user()->name }} {{ auth()->user()->surname }}</span>
+                                        <span class="text-gray-400 text-[11px] leading-3">{{ auth()->user()->role->name }}</span>
+                                    </div>
+                                </button>
+
+                                <!-- Menu rozwijane -->
+                                <div x-show="open" 
+                                     @click.away="open = false"
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="transform opacity-0 scale-95"
+                                     x-transition:enter-end="transform opacity-100 scale-100"
+                                     x-transition:leave="transition ease-in duration-75"
+                                     x-transition:leave-start="transform opacity-100 scale-100"
+                                     x-transition:leave-end="transform opacity-0 scale-95"
+                                     class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50">
+                                    
+                                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        Ustawienia profilu
+                                    </a>
+                                    
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            Wyloguj
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-sm font-medium text-white rounded-lg transition-colors duration-200">
-                                    Wyloguj
-                                </button>
-                            </form>
                         </div>
                     @endauth
                 </div>
@@ -77,5 +98,8 @@
             @endif
         </div>
     </div>
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html> 
