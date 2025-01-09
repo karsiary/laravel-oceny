@@ -14,9 +14,14 @@
                         <div class="bg-gray-700 rounded-lg p-6">
                             <h3 class="text-xl font-medium mb-4">Zarządzanie użytkownikami</h3>
                             <p class="text-gray-300 mb-4">Dodawaj, edytuj i usuwaj użytkowników systemu.</p>
-                            <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
-                                Przejdź do panelu administratora
-                            </a>
+                            <div class="flex space-x-4">
+                                <a href="{{ route('admin.dashboard') }}" class="flex-1 inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
+                                    Panel administratora
+                                </a>
+                                <a href="{{ route('teacher.dashboard') }}" class="flex-1 inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
+                                    Panel nauczyciela
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endif

@@ -12,14 +12,14 @@
         </div>
         <form class="mt-8 space-y-6" method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="rounded-md shadow-sm -space-y-px">
+            <div class="rounded-md shadow-sm space-y-3">
                 <div>
                     <label for="email" class="sr-only">Email</label>
-                    <input id="email" name="email" type="email" required class="form-input rounded-t-md" placeholder="Email" value="{{ old('email') }}">
+                    <input id="email" name="email" type="email" required class="form-input rounded-md w-full bg-gray-700 border-gray-600 text-white" placeholder="Email" value="{{ old('email') }}">
                 </div>
                 <div>
                     <label for="password" class="sr-only">Hasło</label>
-                    <input id="password" name="password" type="password" required class="form-input rounded-b-md" placeholder="Hasło">
+                    <input id="password" name="password" type="password" required class="form-input rounded-md w-full bg-gray-700 border-gray-600 text-white" placeholder="Hasło">
                 </div>
             </div>
 
