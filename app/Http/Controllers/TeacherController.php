@@ -17,27 +17,31 @@ class TeacherController extends Controller
             $query->where('slug', 'student');
         })->get();
         
-        $subjects = auth()->user()->subjects;
+        $subjects = auth()->user()->hasRole('admin') 
+            ? Subject::all() 
+            : auth()->user()->subjects;
         
         return view('teacher.dashboard', compact('students', 'subjects'));
     }
 
     public function addGrade(Request $request)
     {
-        $validated = $request->validate([
+        $validationRules = [
             'student_id' => ['required', 'exists:users,id'],
-            'subject_id' => [
-                'required',
-                'exists:subjects,id',
-                function ($attribute, $value, $fail) {
-                    if (!auth()->user()->subjects->contains($value)) {
-                        $fail('Nie masz uprawnień do wystawiania ocen z tego przedmiotu.');
-                    }
-                },
-            ],
+            'subject_id' => ['required', 'exists:subjects,id'],
             'grade' => ['required', 'integer', 'between:1,6'],
             'comment' => ['nullable', 'string', 'max:255'],
-        ]);
+        ];
+
+        if (!auth()->user()->hasRole('admin')) {
+            $validationRules['subject_id'][] = function ($attribute, $value, $fail) {
+                if (!auth()->user()->subjects->contains($value)) {
+                    $fail('Nie masz uprawnień do wystawiania ocen z tego przedmiotu.');
+                }
+            };
+        }
+
+        $validated = $request->validate($validationRules);
 
         $validated['teacher_id'] = auth()->id();
 
@@ -57,7 +61,7 @@ class TeacherController extends Controller
 
     public function editGrade(Grade $grade)
     {
-        if (!auth()->user()->subjects->contains($grade->subject_id)) {
+        if (!auth()->user()->hasRole('admin') && !auth()->user()->subjects->contains($grade->subject_id)) {
             abort(403, 'Nie masz uprawnień do edycji ocen z tego przedmiotu.');
         }
 
@@ -66,7 +70,7 @@ class TeacherController extends Controller
 
     public function updateGrade(Request $request, Grade $grade)
     {
-        if (!auth()->user()->subjects->contains($grade->subject_id)) {
+        if (!auth()->user()->hasRole('admin') && !auth()->user()->subjects->contains($grade->subject_id)) {
             abort(403, 'Nie masz uprawnień do edycji ocen z tego przedmiotu.');
         }
 
