@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use App\Models\GradeHistory;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -31,7 +33,16 @@ class TeacherController extends Controller
 
         $validated['teacher_id'] = auth()->id();
 
-        Grade::create($validated);
+        DB::transaction(function () use ($validated) {
+            $grade = Grade::create($validated);
+            
+            GradeHistory::create([
+                'grade_id' => $grade->id,
+                'edited_by' => auth()->id(),
+                'new_grade' => $validated['grade'],
+                'new_comment' => $validated['comment'] ?? null,
+            ]);
+        });
 
         return redirect()->route('teacher.dashboard')->with('success', 'Ocena została dodana.');
     }
@@ -48,7 +59,18 @@ class TeacherController extends Controller
             'comment' => ['nullable', 'string', 'max:255'],
         ]);
 
-        $grade->update($validated);
+        DB::transaction(function () use ($grade, $validated) {
+            GradeHistory::create([
+                'grade_id' => $grade->id,
+                'edited_by' => auth()->id(),
+                'old_grade' => $grade->grade,
+                'new_grade' => $validated['grade'],
+                'old_comment' => $grade->comment,
+                'new_comment' => $validated['comment'] ?? null,
+            ]);
+
+            $grade->update($validated);
+        });
 
         return redirect()->route('teacher.dashboard')->with('success', 'Ocena została zaktualizowana.');
     }

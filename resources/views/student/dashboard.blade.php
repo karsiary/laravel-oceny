@@ -20,11 +20,12 @@
                     <div class="flex flex-wrap gap-2">
                         @forelse($subject->grades as $grade)
                             <div class="relative group">
-                                <div class="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors duration-200">
+                                <a href="{{ route('student.grades.history', $grade) }}" 
+                                   class="block w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors duration-200">
                                     <span class="absolute inset-0 flex items-center justify-center text-lg font-medium text-white">
                                         {{ $grade->grade }}
                                     </span>
-                                </div>
+                                </a>
                                 @if($grade->comment)
                                     <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block w-48 z-10">
                                         <div class="bg-gray-900 text-white text-sm rounded-lg p-2 shadow-lg">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Grade extends Model
 {
@@ -22,5 +23,10 @@ class Grade extends Model
     public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function history(): HasMany
+    {
+        return $this->hasMany(GradeHistory::class)->orderBy('created_at', 'desc');
     }
 } 

@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-            <h2 class="text-2xl font-bold text-center mb-6">Rejestracja</h2>
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-[rgb(30,41,59,0.5)] shadow-md overflow-hidden sm:rounded-lg">
+            <h2 class="text-3xl font-bold text-white text-center mb-6">Rejestracja</h2>
 
             <form method="POST" action="{{ route('register') }}" class="space-y-6">
                 @csrf
