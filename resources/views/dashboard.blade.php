@@ -65,6 +65,53 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Twoje Przedmioty -->
+                <div class="container-gray h-full">
+                    <div class="flex flex-col h-full">
+                        <div class="block self-start">
+                            <div class="material-icon-container bg-indigo-500/20 text-indigo-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-medium text-white mb-3">Twoje Przedmioty</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 max-h-[300px] overflow-y-auto pr-2">
+                                @forelse(auth()->user()->subjects as $subject)
+                                    <div class="group flex flex-col bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:border-indigo-500/50 hover:bg-gray-700/80 transition-all duration-200 shadow-lg hover:shadow-indigo-500/10">
+                                        <div class="flex items-center mb-2">
+                                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3 flex-1">
+                                                <p class="text-gray-200 font-medium leading-snug break-words group-hover:text-indigo-300 transition-colors duration-200">
+                                                    {{ $subject->name }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="col-span-full flex items-center justify-center p-6 bg-gray-800/50 rounded-xl border border-gray-700/50">
+                                        <div class="text-center">
+                                            <div class="flex justify-center mb-3">
+                                                <div class="w-12 h-12 rounded-lg bg-gray-700/50 flex items-center justify-center">
+                                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <p class="text-gray-400 text-sm">Brak przypisanych przedmiotów</p>
+                                        </div>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             @if(auth()->user()->hasRole('student'))
