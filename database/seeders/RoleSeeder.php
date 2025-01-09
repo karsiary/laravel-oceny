@@ -2,21 +2,33 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use Illuminate\Database\Seeder;
+use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = [
-            ['name' => 'Administrator', 'slug' => 'admin'],
-            ['name' => 'Nauczyciel', 'slug' => 'teacher'],
-            ['name' => 'Student', 'slug' => 'student'],
-        ];
-
-        foreach ($roles as $role) {
-            Role::create($role);
-        }
+        Role::create({
+    "id": 1,
+    "name": "Administrator",
+    "slug": "admin",
+    "created_at": "2025-01-09 10:32:15",
+    "updated_at": "2025-01-09 10:32:15"
+});
+        Role::create({
+    "id": 2,
+    "name": "Nauczyciel",
+    "slug": "teacher",
+    "created_at": "2025-01-09 10:32:15",
+    "updated_at": "2025-01-09 10:32:15"
+});
+        Role::create({
+    "id": 3,
+    "name": "Student",
+    "slug": "student",
+    "created_at": "2025-01-09 10:32:15",
+    "updated_at": "2025-01-09 10:32:15"
+});
     }
-} 
+}

@@ -64,3 +64,81 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Instrukcja uruchomienia aplikacji
+
+### Wymagania wstępne
+- PHP 8.1 lub wyższy
+- Composer
+- Node.js i npm
+- MySQL/MariaDB
+
+### Kroki instalacji i uruchomienia
+
+1. Sklonuj repozytorium i przejdź do katalogu projektu:
+```bash
+git clone [adres-repozytorium]
+cd [nazwa-katalogu]
+```
+
+2. Zainstaluj zależności PHP poprzez Composer:
+```bash
+composer install
+```
+
+3. Skopiuj plik .env.example do .env:
+```bash
+cp .env.example .env
+```
+
+4. Wygeneruj klucz aplikacji:
+```bash
+php artisan key:generate
+```
+
+5. Skonfiguruj połączenie z bazą danych w pliku .env:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nazwa_twojej_bazy
+DB_USERNAME=twoj_uzytkownik
+DB_PASSWORD=twoje_haslo
+```
+
+6. Wykonaj migracje bazy danych:
+```bash
+php artisan migrate
+```
+
+7. Wgraj dane testowe (seedy):
+```bash
+php artisan db:seed
+```
+
+8. Zainstaluj zależności Node.js:
+```bash
+npm install
+```
+
+9. Skompiluj assety:
+```bash
+npm run build
+```
+
+10. Uruchom serwer deweloperski Laravel:
+```bash
+php artisan serve
+```
+
+11. W osobnym terminalu uruchom Vite (do hot-reload frontendu):
+```bash
+npm run dev
+```
+
+Aplikacja będzie dostępna pod adresem: http://localhost:8000
+
+### Dodatkowe informacje
+- Panel administracyjny: http://localhost:8000/admin
+- Panel nauczyciela: http://localhost:8000/teacher
+- Panel ucznia: http://localhost:8000/student
