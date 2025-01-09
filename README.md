@@ -15,10 +15,44 @@ git clone [adres-repozytorium]
 cd [nazwa-katalogu]
 ```
 
+### 1.1 Pobieramy wersje PHP:
+-8.1.31
+
+
+### 1.2 Podnieniamy plik php.ini:
+Podmieniamy plik php.ini na plik z repozytorium.
+/resources/php.ini
+[PHP](https://windows.php.net/downloads/releases/php-8.1.31-nts-Win32-vs16-x64.zip)
+
+
+### 1.3 Problemy z zapisem php.ini:
+Przenosimy aktualny plik ini do pulpitu,
+a plik z repozytorium przenosimy do katalogu php
+
+### 1.4 Instalujemy composera:
+Nalezy pobrac i zainstalowac composera
+Jako engine php wskazujemy mu wcześniej zainstalowana wersje php
+
+
+### 1.5 Pobieramy xampa:
+Pobranie oficnalnej wersji xamppa
+[XAAMP](https://www.apachefriends.org/download_success.html)
+
+### 1.6 Uruchamiany xampp:
+Włączamy serwer apache oraz mysql
+
+### 1.7 Dodajemy baze danych:
+Dodajemy baze danych o takiej samej nazwie jak w pliku .env
+
 ### 2. Instalacja zależności
 Instalacja zależności PHP:
 ```bash
 composer install
+```
+
+### 2.1 Jeżeli install nie działa:
+```bash
+composer update
 ```
 
 Instalacja zależności Node.js:
@@ -59,10 +93,11 @@ Wgraj dane testowe:
 php artisan db:seed
 ```
 
-### 6. Kompilacja assetów
+### 6. W osobnym terminalu uruchom Vite (do hot-reload frontendu):
 ```bash
-npm run build
+npm run dev
 ```
+
 
 ### 7. Uruchomienie aplikacji
 Uruchom serwer Laravel:
@@ -70,18 +105,12 @@ Uruchom serwer Laravel:
 php artisan serve
 ```
 
-W osobnym terminalu uruchom Vite (do hot-reload frontendu):
-```bash
-npm run dev
-```
+
 
 ## Dostęp do aplikacji
 Aplikacja będzie dostępna pod adresem: http://localhost:8000
 
-### Panele użytkowników:
-- Panel administracyjny: http://localhost:8000/admin
-- Panel nauczyciela: http://localhost:8000/teacher
-- Panel ucznia: http://localhost:8000/student
+
 
 ### Domyślne dane logowania
 Administrator systemu:
@@ -90,12 +119,7 @@ Email: admin@example.com
 Hasło: password
 ```
 
-## Rozwiązywanie problemów
-1. Jeśli występują problemy z uprawnieniami do katalogów storage i cache:
-```bash
-php artisan cache:clear
-php artisan config:clear
-chmod -R 777 storage bootstrap/cache
+
 ```
 
 2. W przypadku problemów z bazą danych:
@@ -103,8 +127,3 @@ chmod -R 777 storage bootstrap/cache
 php artisan migrate:fresh --seed
 ```
 
-3. Jeśli zmiany w plikach CSS/JS nie są widoczne:
-```bash
-npm run build
-php artisan view:clear
-``` 
